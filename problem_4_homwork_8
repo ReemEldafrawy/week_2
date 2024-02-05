@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    node* next;
+    node* prev;
+};
+node* head = NULL;
+void insert(int value)
+{
+    node* new_node = new node;
+    new_node->data = value;
+    if (head == NULL)
+    {
+        head = new_node;
+        new_node->next = NULL;
+    }
+    else
+    {
+        node* last = head;
+        while (last->next != NULL)
+        {
+            last = last->next;
+        }
+        last->next = new_node;
+        new_node->next = NULL;
+
+    }
+}
+void display()
+{
+    if (head == NULL)
+    {
+        cout << "linked list is empty:\n";
+    }
+    else
+    {
+        node* last = head;
+        while (last != NULL)
+        {
+            cout << last->data << "  ";
+            last = last->next;
+
+        }
+    }
+}
+void delete_even_position()
+{
+if(head==NULL)
+{
+    cout << "linked list is empty.\n";
+}
+node* front = head;
+while (front != NULL &&front->next!=NULL) //tail !=null
+{
+    node* tail = front->next;
+    front->next = tail->next; // لازم اربط ال نوت الاولي بال نوت اللي بعد المحدوفة
+    delete(tail);
+    front = front->next;
+
+}
+
+}
+
+
+
+int main()
+{
+
+    insert(1);
+    insert(2);
+    insert(3);
+    insert(4);
+    insert(5);
+   // insert(6);
+    delete_even_position();
+    display();
+
+    
+}
