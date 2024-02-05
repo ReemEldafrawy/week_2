@@ -1,4 +1,5 @@
-#include <iostream>
+
+    #include <iostream>
 using namespace std;
 struct node
 {
@@ -46,19 +47,23 @@ void display()
 }
 void swap()
 {
-    node* current;
+    node* current = head;
+    node* next = head->next;
     if (head == NULL) {
         cout << "linked list is empty.\n";
 }
     else
     {
-        for (current = head;current;current = current->next)
+        while (current != NULL && next != NULL)
         {
-            if (current->next)
+            swap(current->data, next->data);
+              
+            current = next->next;
+            if (current != NULL)
             {
-                swap(current->data, current->next->data);
-                current = current->next;
+             next = current->next;
             }
+
         }
 
     }
@@ -80,3 +85,4 @@ int main()
 
     
 }
+
