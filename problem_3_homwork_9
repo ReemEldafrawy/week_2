@@ -1,0 +1,99 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    node* next;
+    node* prev;
+};
+node* head = NULL;
+void insert(int value)
+{
+    node* new_node = new node;
+    new_node->data = value;
+    if (head == NULL)
+    {
+        head = new_node;
+        new_node->next = NULL;
+    }
+    else
+    {
+        node* last = head;
+        while (last->next != NULL)
+        {
+            
+            last = last->next;
+        }
+        last->next = new_node;
+        new_node->next = NULL;
+
+
+
+
+
+    }
+}
+
+void display()
+{
+    if (head == NULL)
+    {
+        cout << "linked list is empty:\n";
+    }
+    else
+    {
+        node* last = head;
+        while (last != NULL)
+        {
+            cout << last->data << "  ";
+            last = last->next;
+
+        }
+    }
+}
+void remove_duplicates()
+{
+    if (head == NULL)
+    {
+        cout << "linked list is empty.\n";
+    }
+    else
+    {
+        node* tail = head;
+        while (tail != NULL && tail->next != NULL)
+        {
+            node* current = tail;
+            while (current->next != NULL)
+            {
+                if (tail->data == current->next->data)
+                {
+                    node* duplicate = current->next;
+                    current->next = current->next->next;
+                    delete duplicate;
+                }
+                else
+                {
+                    current = current->next;
+                }
+            }
+            tail = tail->next;
+        }
+    }
+}
+
+
+int main()
+{
+
+    insert(10);
+    insert(2);
+    insert(10);
+    insert(4);
+    insert(10);
+    
+   // insert(6);
+    remove_duplicates();
+    display();
+
+    
+}
