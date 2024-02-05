@@ -1,0 +1,88 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    node* next;
+};
+node* head = NULL;
+void insert(int value)
+{
+    node* new_node = new node;
+    new_node->data = value;
+    if (head == NULL)
+    {
+        head = new_node;
+        new_node->next = NULL;
+    }
+    else
+    {
+        node* last = head;
+        while (last->next != NULL)
+        {
+            last = last->next;
+        }
+        last->next = new_node;
+        new_node->next = NULL;
+
+    }
+}
+void display()
+{
+    if (head == NULL)
+    {
+        cout << "linked list is empty:\n";
+    }
+    else
+    {
+        node* last = head;
+        while (last != NULL)
+        {
+            cout << last->data << "  ";
+            last = last->next;
+
+        }
+    }
+}
+void delete_with_key(int value)
+{
+    node* previous, * current;
+    previous = current = head;
+    if (head == NULL)
+    {                                  
+        cout << "linked list is empty.\n";   
+    }
+    
+    if (current->data == value)
+    {
+        head = current->next;     
+        free(current);
+        return;
+    }
+
+    while (current->data != value)
+    {
+        previous = current;
+        current = current->next;
+    }
+    
+    previous->next = current->next;
+    free(current);
+
+}
+
+
+int main()
+{
+
+    insert(1);
+    insert(2);
+    insert(3);
+    insert(4);
+    insert(2);
+    insert(6);
+    delete_with_key(2);
+    display();
+
+    
+}
