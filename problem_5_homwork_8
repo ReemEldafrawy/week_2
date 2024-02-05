@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    node* next;
+    node* prev;
+};
+node* head = NULL;
+void insert_to_be_sorted(int value)
+{
+    node* new_node = new node;
+    new_node->data = value;
+    if (head == NULL)
+    {
+        head = new_node;
+        new_node->next = NULL;
+    }
+    else
+    {
+        node* last = head;
+        while (last->next != NULL)
+        {
+            if (last->data > new_node->data)
+            {
+                swap(last->data, new_node->data);
+        }
+            last = last->next;
+        }
+        last->next = new_node;
+        new_node->next = NULL;
+
+
+
+
+
+    }
+}
+void display()
+{
+    if (head == NULL)
+    {
+        cout << "linked list is empty:\n";
+    }
+    else
+    {
+        node* last = head;
+        while (last != NULL)
+        {
+            cout << last->data << "  ";
+            last = last->next;
+
+        }
+    }
+}
+
+
+
+int main()
+{
+
+    insert_to_be_sorted(10);
+    insert_to_be_sorted(2);
+    insert_to_be_sorted(30);
+    insert_to_be_sorted(4);
+    insert_to_be_sorted(1);
+   // insert(6);
+    
+    display();
+
+    
+}
