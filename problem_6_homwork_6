@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+class node
+{
+public:
+	int data;
+	node* next;
+};
+class linkedlist {
+
+private:
+	node* head;
+public:
+	linkedlist() {
+		node* head = NULL;
+	}
+	~linkedlist()
+	{
+		while (head)
+		{
+			node* now = head->next;
+			delete(head);
+			head = now;
+
+		}
+
+
+
+	}
+
+	void insert(int value)
+	{
+		node* current = new node;
+		current->data = value;
+		
+		
+	                              //add elements in reversed order,(6,5,4,3,2,1);
+	    current->next = head;
+	    head = current;
+
+		
+
+	}
+	void print()
+	{
+		node* current = head;
+		while (current != NULL)
+		{
+			cout << current->data << "   ";
+			current = current->next;
+		}
+
+	}
+	void get_tail()
+	{
+
+
+		node* cur = head;
+		while (cur->next != NULL&&cur!=NULL)
+		{
+			cur = cur->next;
+		}
+		cout << cur->data;
+
+
+
+	}
+};
+int main()
+{
+
+	linkedlist l;
+	l.insert(1);
+	l.insert(2);
+	l.insert(3);
+	l.insert(4);
+	l.insert(5);
+	l.insert(6);
+	l.print();
+	cout << "tail:";
+ l.get_tail();
+	
+
+
+
+
+}
