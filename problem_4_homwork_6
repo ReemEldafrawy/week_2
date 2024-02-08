@@ -1,0 +1,118 @@
+#include <iostream>
+using namespace std;
+class node
+{
+public:
+	int data;
+	node* next;
+};
+class linkedlist {
+
+private:
+	node* head;
+public:
+	linkedlist() {
+		node* head = NULL;
+	}
+	~linkedlist()
+	{
+		while (head)
+		{
+			node* now = head->next;
+			delete(head);
+			head = now;
+
+		}
+
+
+
+	}
+
+	void insert(int value)
+	{
+		node* newnode = new node;
+		newnode->data = value;
+		if (head == NULL)
+		{
+			head = newnode;
+			newnode->next = NULL;
+		}
+		else
+		{
+			node* last = head;
+			while (last->next!=NULL)
+			{
+				last = last->next;
+
+}
+			last->next = newnode;
+			newnode->next = NULL;
+
+		}
+
+	}
+	void display()
+	{
+		if (head == NULL)
+		{
+			cout << "linked list is empty:\n";
+		}
+		else
+		{
+			node* last = head;
+			while (last != NULL)
+			{
+				cout << last->data << "  ";
+				last = last->next;
+
+			}
+		}cout << endl;
+	}
+	
+	void get_nth_back(int n)       //هنا المفروض ترجع قيمة بس لما بعمل ريترن بيطلع ايرور 
+	{
+		node* current = head;
+		int counter = 0;
+		while (current!= NULL)
+		{
+			current = current->next;
+			counter++;
+		}
+		if (counter < n)
+		{
+			cout << "errror!!!!!!\n";
+		}
+		else
+		{
+			int x = (counter - n + 1);
+			cout << x << " ";
+		}
+	
+	}
+
+
+
+
+
+
+};
+
+
+
+int main()
+{
+
+	linkedlist l;
+	l.insert(1);
+	l.insert(2);
+	l.insert(3);
+	l.insert(4);
+	l.insert(5);
+	l.insert(6);
+	l.display();
+	l.get_nth_back(2);
+
+
+
+
+}
