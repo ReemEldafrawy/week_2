@@ -1,0 +1,135 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+class node
+{
+public:
+	int data;
+	node* next;
+};
+class linkedlist {
+
+private:
+	node* head;
+public:
+	linkedlist() {
+		node* head = NULL;
+	}
+	~linkedlist()
+	{
+		while (head)
+		{
+			node* now = head->next;
+			delete(head);
+			head = now;
+
+		}
+
+
+
+	}
+
+	void insert(int value)
+	{
+		node* newnode = new node;
+		newnode->data = value;
+		if (head == NULL)
+		{
+			head = newnode;
+			newnode->next = NULL;
+		}
+		else
+		{
+			node* last = head;
+			while (last->next != NULL)
+			{
+				last = last->next;
+
+			}
+			last->next = newnode;
+			newnode->next = NULL;
+
+		}
+
+	}
+	void display()
+	{
+		if (head == NULL)
+		{
+			cout << "linked list is empty:\n";
+		}
+		else
+		{
+			node* last = head;
+			while (last != NULL)
+			{
+				cout << last->data << "  ";
+				last = last->next;
+
+			}
+		}cout << endl;
+	}
+	int max()
+	{
+		node* current = head->next;
+		int val = head->data;
+		while (current)
+		{
+			if (val < current->data)
+			{
+				val = current->data;
+
+			}
+		
+			
+		current = current->next;
+			
+
+		}
+		return val;
+
+
+
+
+
+
+
+
+
+	}
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};
+int main()
+{
+
+	linkedlist l;
+	//l.insert(1);
+	//l.insert(2);
+	l.insert(6);
+	l.insert(10);
+	l.insert(8);
+	l.insert(15);
+	l.display();
+	cout << "max:";
+	cout << l.max();
+	
+
+
+//without recursion....
+
+}
